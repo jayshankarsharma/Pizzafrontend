@@ -1,39 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
+// import { tempGlobal } from '../includes/header/header/header.component';
+export let tempGlobal:string;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
- username:string="";
+  username: string = '';
+  password: string = '';
+  error: string = '';
 
-  constructor(private router:Router) { 
-    let username, password, mobile,fullName, address ;
-    
-        
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+  onSubmit() {
+   if(this.username==='Admin' && this.password==='Admin')
+   {
+    this.router.navigate(['/maincontent']);
+    localStorage.setItem('userloggedin','true')
+    tempGlobal='logout';
+  }else{
+    this.error="Invalid User";
   }
-
-  ngOnInit(): void {
-  }
-validate(){ // validate user from server
-
 }
-onSubmit(f:NgForm){
-  console.log("Credentials submitted "+this.username);
-}
-onSubmit2(){
-
-}
-  // submitclicked(){
-
-
-  //   console.log("Credentials submitted 1 "+this.username);
-  //   // localStorage.setItem('userloggedin',"true");
-  //   // this.router.navigate(['/maincontent']);
-    
-  // }
 }

@@ -1,16 +1,18 @@
 <div >
     <h1  >Login Here  </h1>
-    <form  #loginForm="ngForm" class="example-form"  (ngSubmit)="onSubmit($event)">
+    <h3>{{error}}</h3>
+    <form  #loginForm="ngForm" class="example-form"  (ngSubmit)="onSubmit()">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>User Name</mat-label>
-          <input matInput ngModel name="username"  FormControl=" " [value]="username" >
+          <input matInput  name="username"  [(ngModel)]="username" >
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput ngModel  name="password" type="password" FormControl="password" >
+            <input matInput   name="password" type="password" [(ngModel)]="password" >
         </mat-form-field><br>
         <button mat-raised-button color="primary">Login</button>
     </form>
+    
 </div>
     
 
