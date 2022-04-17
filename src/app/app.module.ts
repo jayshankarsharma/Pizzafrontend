@@ -13,7 +13,9 @@ import { FooterComponent } from './includes/footer/footer/footer.component';
 import { MainComponent } from './pages/main/main.component';
 import { MaincontentComponent } from './pages/maincontent/maincontent.component';
 import { FormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
 
+export let changeLogIcon:string;
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    MaincontentComponent
+    MaincontentComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

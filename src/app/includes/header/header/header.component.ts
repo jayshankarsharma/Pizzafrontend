@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { tempGlobal } from 'src/app/login/login.component';
+
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,7 @@ import { tempGlobal } from 'src/app/login/login.component';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  auth: string = 'login' || tempGlobal;
+  auth: string =  'login';
 
   // =localStorage.getItem('userloggedin');
   
@@ -21,7 +21,11 @@ export class HeaderComponent implements OnInit {
     } else {
       this.auth = 'logout';
       this.router.navigate(['/maincontent']);
+     
     }
     
+  }
+  changeLogIcon(){
+    console.log("Change log function");
   }
 }

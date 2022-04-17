@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+// import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { tempGlobal } from '../includes/header/header/header.component';
-export let tempGlobal:string;
+
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,8 +22,9 @@ export class LoginComponent implements OnInit {
    if(this.username==='Admin' && this.password==='Admin')
    {
     this.router.navigate(['/maincontent']);
-    localStorage.setItem('userloggedin','true')
-    tempGlobal='logout';
+    localStorage.setItem('userloggedin','true');
+    console.log("calling value in : ");
+   
   }else{
     this.error="Invalid User";
   }
