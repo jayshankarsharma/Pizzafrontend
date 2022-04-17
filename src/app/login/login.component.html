@@ -1,0 +1,29 @@
+<div >
+    <h1  >Login Here  </h1>
+    <form  #loginForm="ngForm" class="example-form"  (ngSubmit)="onSubmit($event)">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>User Name</mat-label>
+          <input matInput ngModel name="username"  FormControl=" " [value]="username" >
+        </mat-form-field><br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput ngModel  name="password" type="password" FormControl="password" >
+        </mat-form-field><br>
+        <button mat-raised-button color="primary">Login</button>
+    </form>
+</div>
+    
+
+
+    <!-- <form #f="ngForm" (ngSubmit)="onSubmit2()" novalidate>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Use Name</label>
+        <input type="text"  ngModel class="form-control" name="username" id="username" placeholder="username">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput2" class="form-label">password</label>
+        <input type="password" class="form-control" id="password" placeholder="password">
+        </div>
+        <button class="btn btn-primary" >Login</button>
+        <h3>Not a registered user? <a [routerLink]="['/signup']" routerlink="">Sign-Up</a></h3>
+        </form> -->

@@ -1,0 +1,10 @@
+.footer {
+    text-align: center;
+    position: fixed;
+      bottom: 0;
+    height: 50px;
+    /* display: block; */
+    width: 100%;
+    background-color: grey;
+
+}

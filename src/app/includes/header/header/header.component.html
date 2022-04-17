@@ -1,0 +1,14 @@
+<div class="container">
+
+    <mat-toolbar color="primary" class="mattlbr">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>My App</span>
+        <span class="example-spacer"></span>
+        <button (click)="alter()" [routerLink]="['/',auth]" mat-icon-button  >
+            <mat-icon>{{auth}}</mat-icon> {{auth}}
+        </button>
+
+    </mat-toolbar>
+</div>
