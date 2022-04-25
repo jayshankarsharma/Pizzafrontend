@@ -8,6 +8,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const material=[
   MatToolbarModule,
@@ -16,7 +20,11 @@ const material=[
   TextFieldModule,
   MatFormFieldModule,
   BrowserAnimationsModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule,
+  MatCardModule,
+  MatRadioModule,
+  MatCheckboxModule
 ]
 
 @NgModule({

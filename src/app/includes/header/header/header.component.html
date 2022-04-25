@@ -1,14 +1,33 @@
-<div class="container">
+<div class="container" >
 
     <mat-toolbar color="primary" class="mattlbr">
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>My App</span>
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    <mat-icon>menu</mat-icon>
+                </button> -->
+        <span class="logo" [routerLink]="['/maincontent']">My App</span>
         <span class="example-spacer"></span>
-        <button [routerLink]="['/',auth]" mat-icon-button  >
-            <mat-icon>{{auth}}</mat-icon> {{auth}}
-        </button>
-<!-- <p>{{auth}}</p> -->
+        <div *ngIf="loginStatus">
+            <button [routerLink]="['/logout']" (click)="logout()" mat-icon-button>
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
+        </div>
+        
+        <div *ngIf="!loginStatus">
+         
+            <button [routerLink]="['/login']" mat-icon-button>
+                <!-- <mat-icon>login</mat-icon> -->
+                Login</button>
+            <button [routerLink]="['/signup']" mat-icon-button>
+                <mat-icon>signup</mat-icon>Signup</button>
+            
+            <!-- <select>
+                <option><a [routerLink]="['/login']">Login</a></option>
+                <option><a [routerLink]="['/signup']">Signup</a></option>
+            </select> -->
+        
+        </div>
+
     </mat-toolbar>
-</div>
+
+            </div>

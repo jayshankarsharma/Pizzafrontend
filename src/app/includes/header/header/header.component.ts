@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthenticationService } from 'src/app/appservices/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -8,24 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  auth: string =  'login';
+  loginStatus:boolean=false;
 
-  // =localStorage.getItem('userloggedin');
+
+  constructor(private router: Router,public authservice:AuthenticationService) {
   
-  constructor(private router: Router) {}
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userloggedin') === 'false') {
-      this.auth = 'login';
-      this.router.navigate(['/maincontent']);
-    } else {
-      this.auth = 'logout';
-      this.router.navigate(['/maincontent']);
-     
-    }
-    
+    this.authservice.isLoggedIn.subscribe(res=>{
+      this.loginStatus=res;
+    }    )
+    // if(this.loginStatus) {
+    //     this.router.navigate(['/maincontent']);
+    // } else {
+    //        this.router.navigate(['/maincontent']);
+    // }
   }
-  changeLogIcon(){
-    console.log("Change log function");
+  
+  logout(): void {
+    localStorage.setItem('userloggedin','false');
+    this.authservice.isLoggedIn.next(false);
   }
+
 }
