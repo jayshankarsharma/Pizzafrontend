@@ -6,6 +6,10 @@
                 </button> -->
         <span class="logo" [routerLink]="['/maincontent']">My App</span>
         <span class="example-spacer"></span>
+        <button class="cart" [routerLink]="['/cart']" mat-icon-button>
+                <mat-icon>cart</mat-icon>
+                cart</button>
+                
         <div *ngIf="loginStatus">
             <button [routerLink]="['/logout']" (click)="logout()" mat-icon-button>
                 <mat-icon>logout</mat-icon>
