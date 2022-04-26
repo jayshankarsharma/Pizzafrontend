@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <h1>Cart details</h1>
+<div *ngFor="let order of cart; let i=index " >
+   <div style="width: 16rem;margin-left:10px"> <hr>
+<h3>Order :- {{i+1}}</h3>
+<p><strong>Pizza Type</strong>:{{order.pizzaType}}</p>
+<p><strong>Pizza size</strong>:{{order.size}}</p>
+<p><strong>Pizza ingredients</strong>:{{ this.removeNull(order.ingredients)}}</p>
+<p><strong>Price</strong>:{{order.price}}</p>
+</div>
+</div>
+
+</div>

@@ -16,6 +16,7 @@ import { MainComponent } from './pages/main/main.component';
 import { MaincontentComponent } from './pages/maincontent/maincontent.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthenticationService } from './appservices/authentication.service';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthenticationService } from './appservices/authentication.service';
     FooterComponent,
     MainComponent,
     MaincontentComponent,
-    LogoutComponent
+    LogoutComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
