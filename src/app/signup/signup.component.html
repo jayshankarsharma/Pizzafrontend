@@ -1,34 +1,63 @@
-<h1>Sign-Up here </h1>
-<div>
-    <h3 style="color: red;">{{error}}</h3>
-    <form #loginForm="ngForm" name="signupform"  (ngSubmit)="onSubmit()">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+      <input nz-input formControlName="email" id="email" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userName" nzRequired
+      nzTooltipTitle="What do you want other to call you">
+      <span>User Name</span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your userName!">
+      <input nz-input id="userName" formControlName="userName" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+      <input nz-input type="password" id="password" formControlName="password"
+        (ngModelChange)="updateConfirmValidator()" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+      <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+      <ng-template #errorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+        <ng-container *ngIf="control.hasError('confirm')">
+          Two passwords that you enter is inconsistent!
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
 
-        <label for="formcontrol" class="form-label">Full Name</label>
-        <input type="text" name ="fullname" name ="" [(ngModel)]="fullname" class="form-label" [ngModelOptions]="{standalone: true}"><br>
-
-
-        <label for="formcontrol" class="form-label">Use Name</label>
-        <input type="text" name ="username" [(ngModel)]="username" class="form-label" [ngModelOptions]="{standalone: true}"><br>
-
-
-        <label for="formcontrol" class="form-label">password</label>
-        <input type="password" name ="password" [(ngModel)]="password" class="form-label" [ngModelOptions]="{standalone: true}"><br>
-
-
-        <label for="formcontrol" class="form-label">Confirm Password</label>
-        <input type="password" name ="confirmpassword" [(ngModel)]="confirmpassword" class="form-label" [ngModelOptions]="{standalone: true}"><br>
-
-
-        <label for="formcontrol" class="form-label">Mobile No.</label>
-        <input type="text" name ="mobileno" [(ngModel)]="mobileno" class="form-label" [ngModelOptions]="{standalone: true}"><br>
-
-
-        <label for="formcontrol" class="form-label">Address</label>
-        <input type="text" class="form-label" name ="address" [(ngModel)]="address" [ngModelOptions]="{standalone: true}"><br>
-
-
-
-        <button class="btn btn-primary"  type="submit">Sign-Up</button><br>
-
-    </form>
-</div>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mobile" nzRequired>Phone Number</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['mobile']"
+      nzErrorTip="Please input your phone number!">
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+        <ng-template #addOnBeforeTemplate>
+          <nz-select formControlName="mobilePrefix" class="phone-select">
+            <nz-option nzLabel="+91" nzValue="+91"></nz-option>
+            <nz-option nzLabel="+92" nzValue="+92"></nz-option>
+          </nz-select>
+        </ng-template>
+        <input formControlName="mobile" id="'mobile'" nz-input />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address" nzRequired>address</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input address!">
+      <input nz-input id="address" formControlName="address" placeholder="address" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary">Register</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

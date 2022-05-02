@@ -1,4 +1,4 @@
-<h1>My Cart </h1>
+<h1>My Orders </h1>
 <nz-table>
   <thead>
     <tr>
@@ -8,7 +8,6 @@
       <th>Pizza Size</th>
       <th>Pizza Ingredients</th>
       <th>Pizza Price</th>
-      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -18,16 +17,14 @@
       <td>{{ order.size }}</td>
       <td>
         <div *ngFor="
-              let ingredient of order.ingredients;
-              let i = index
-            ">
+            let ingredient of order.ingredients;
+            let i = index
+          ">
           {{ ingredient }}
         </div>
       </td>
       <td>{{ order.price | currency: "INR" }}</td>
-      <td>
-        <button nz-button nzType="primary" nzDanger (click)="onDelete(i)">Remove</button>
-      </td>
+
     </tr>
   </tbody>
 </nz-table>
@@ -37,8 +34,6 @@
     <tr>
       <td>Total Price</td>
       <td>{{totalPrice | currency: "INR" }}</td>
-      <td><button nz-button nzType="primary" [routerLink]="['/checkout']" [disabled]="totalPrice==0">Checkout</button>
-      </td>
     </tr>
   </tbody>
 </nz-table>

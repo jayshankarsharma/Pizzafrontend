@@ -1,0 +1,30 @@
+<nz-content>
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>Shopping</nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <div class="inner-content ">
+    <nz-card #cardData style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[  actionSetting, actionEllipsis]">
+      <select class="pizzatype" id="select" name="pizzatype" [(ngModel)]="model.pizzaType"
+        (ngModelChange)="pizzaChanged()">
+        <option *ngFor="let option of pizzaDetails.pizzaOptions" value="{{ option[0] }}">
+          {{ option[0] }}
+        </option>
+      </select>
+      <nz-radio-group [(ngModel)]="model.size" nzButtonStyle="solid" (ngModelChange)="pizzaChanged()">
+        <label nz-radio *ngFor="let option of pizzaDetails.pizzaSize" nzValue={{option[0]}} (click)="pizzaChanged()">
+          {{ option[0] }}</label>
+      </nz-radio-group>
+      <label nz-checkbox *ngFor="let option of pizzaDetails.ingredients; let i = index" name="option"
+        (ngModelChange)="pizzaChanged()" [(ngModel)]="model.ingredients[i]">{{option[0]}}</label>
+      <ng-template #coverTemplate>
+        <img alt="example" src="../../../../assets/images/Pizza1.png" />
+      </ng-template>
+      <ng-template #actionSetting>
+        <i nz-icon nzType="setting"><label class="pricelabel"><b>Price: -</b> {{ model.price }}</label></i>
+      </ng-template>
+      <ng-template #actionEllipsis>
+        <button nz-button nzType="primary" (click)="onSubmit()"><i nz-icon nzType="cart"> </i>Add to cart</button>
+      </ng-template>
+    </nz-card>
+  </div>
+</nz-content>

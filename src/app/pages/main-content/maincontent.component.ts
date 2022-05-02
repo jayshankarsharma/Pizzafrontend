@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { OrdersService } from 'src/app/services/orders.service';
+import { CartServiceService } from './cart-service.service';
 import { PizzaModel } from './PizzaModel';
 
 @Component({
@@ -9,6 +11,7 @@ import { PizzaModel } from './PizzaModel';
 })
 export class MaincontentComponent implements OnInit {
   model = new PizzaModel('Hot-1 Pizza', 'Small', [], 0);
+  size: string = '';
 
   pizzaDetails: any = {
     pizzaOptions: [
@@ -38,62 +41,48 @@ export class MaincontentComponent implements OnInit {
   order!: PizzaModel;
   orders: PizzaModel[] = [];
 
-  constructor() {}
+  constructor(public ordersService: OrdersService) {}
 
   pizzaChanged() {
     this.priceCalculation();
   }
+
   ngOnInit(): void {
     this.priceCalculation();
   }
 
-  onSubmit(PizzaCard: { value: any }) {
-    this.model.price = this.totalPrice;
-
+  onSubmit() {
     this.order = this.model;
-    
+
     this.pizzaDetails.ingredients.map((data: any, index: number) => {
       if (this.model.ingredients[index]) {
         this.order.ingredients[index] = data[0];
-        console.log('Data:- ' + data[0]);
       }
     });
 
-
-    console.log('Pizza selected:- ', this.order);
-    this.orders.push(this.order);
-
-    // let tempOrder=localStorage.getItem("order1");
-    // if(tempOrder)
-    // this.orders.push(JSON.parse(tempOrder));
-    localStorage.setItem('order1',JSON.stringify(this.orders));
-
+    this.order.ingredients = this.order.ingredients.filter((x: any) => !!x);
+    this.ordersService.addOrders(this.order);
     this.model = new PizzaModel('Hot-1 Pizza', 'Small', [], 0);
-    console.log('Total orders:- ', this.orders);
   }
 
   priceCalculation() {
+    this.model.price = 0;
     this.pizzaDetails.pizzaOptions.map((data: any, index: number) => {
       if (data[0] === this.model.pizzaType) {
-        this.pizzaPrice.pizzaOption = data[1];
+        this.model.price = data[1];
       }
     });
     this.pizzaDetails.pizzaSize.map((data: any, index: number) => {
       if (data[0] === this.model.size) {
-        this.pizzaPrice.pizzaSize = data[1];
+        this.model.price = this.model.price + data[1];
       }
     });
 
     this.pizzaPrice.ingredients = 0;
     this.pizzaDetails.ingredients.map((data: any, index: number) => {
       if (this.model.ingredients[index]) {
-        this.pizzaPrice.ingredients = this.pizzaPrice.ingredients + data[1];
+        this.model.price = this.model.price + data[1];
       }
     });
-
-    this.totalPrice =
-      this.pizzaPrice.pizzaOption +
-      this.pizzaPrice.pizzaSize +
-      this.pizzaPrice.ingredients;
   }
 }
