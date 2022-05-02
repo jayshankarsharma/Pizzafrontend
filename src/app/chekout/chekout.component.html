@@ -1,0 +1,9 @@
+<nz-card style="width:300px; margin: auto; margin-top: 10%; margin-bottom: 5%;" nzTitle="Make your payment">
+  <p>UserName: {{userInfo.name }}</p>
+  <p>Mobile No : {{userInfo.mobile}}</p>
+  <p>Total Price: {{ price | currency:'INR'}}</p>
+  <p>Order Date: {{date.toLocaleString()}}</p>
+  <p>Payment Mode: Online</p>
+  <p>Address: {{userInfo.address}}</p>
+  <td><button nz-button nzType="primary" [routerLink]="['/payment']" (click)="paymentConfirm()">Pay</button></td>
+</nz-card>

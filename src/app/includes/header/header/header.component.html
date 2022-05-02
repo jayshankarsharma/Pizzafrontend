@@ -1,33 +1,33 @@
-<div class="container" >
+<nz-header>
+    <p nz-typography [routerLink]="['/maincontent']">My Pizza</p>
+    <div class="logo" [routerLink]="['/maincontent']">
+    </div>
+    <ul class="nz-menu-item" nz-menu nzTheme="dark" nzMode="horizontal" v>
+        <li nz-menu-item [routerLink]="['/cart']">
+            Cart <nz-badge [nzCount]="count"> <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+            </nz-badge>
+        </li>
+        <li nz-menu-item *ngIf="loginStatus">
+            <i nz-icon nzType="logout" nzTheme="outline"></i>
+            <a nz-dropdown [nzDropdownMenu]="menu">
+                Hello, {{userName}}
+                <i nz-icon nzType="down"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item [routerLink]="['/logout']" (click)="logout()">Logout</li>
+                    <li nz-menu-item [routerLink]="['/orders']">Orders</li>
+                    <li nz-menu-item [routerLink]="['/profile']">Profile</li>
+                </ul>
+            </nz-dropdown-menu>
 
-    <mat-toolbar color="primary" class="mattlbr">
-        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-                    <mat-icon>menu</mat-icon>
-                </button> -->
-        <span class="logo" [routerLink]="['/maincontent']">My App</span>
-        <span class="example-spacer"></span>
-        <div *ngIf="loginStatus">
-            <button [routerLink]="['/logout']" (click)="logout()" mat-icon-button>
-                <mat-icon>logout</mat-icon>
-                Logout
-            </button>
-        </div>
-        
-        <div *ngIf="!loginStatus">
-         
-            <button [routerLink]="['/login']" mat-icon-button>
-                <!-- <mat-icon>login</mat-icon> -->
-                Login</button>
-            <button [routerLink]="['/signup']" mat-icon-button>
-                <mat-icon>signup</mat-icon>Signup</button>
-            
-            <!-- <select>
-                <option><a [routerLink]="['/login']">Login</a></option>
-                <option><a [routerLink]="['/signup']">Signup</a></option>
-            </select> -->
-        
-        </div>
-
-    </mat-toolbar>
-
-            </div>
+        </li>
+        <li nz-menu-item *ngIf="!loginStatus" [routerLink]="['/login']">
+            <i nz-icon nzType="login" nzTheme="outline"></i>
+            Login
+        </li>
+        <li nz-menu-item *ngIf="!loginStatus" [routerLink]="['/signup']">
+            Signup
+        </li>
+    </ul>
+</nz-header>

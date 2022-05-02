@@ -1,0 +1,39 @@
+<h1>My Orders </h1>
+<nz-table>
+  <thead>
+    <tr>
+
+      <th>S. No</th>
+      <th>Pizza Type</th>
+      <th>Pizza Size</th>
+      <th>Pizza Ingredients</th>
+      <th>Pizza Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ order.pizzaType }}</td>
+      <td>{{ order.size }}</td>
+      <td>
+        <div *ngFor="
+            let ingredient of order.ingredients;
+            let i = index
+          ">
+          {{ ingredient }}
+        </div>
+      </td>
+      <td>{{ order.price | currency: "INR" }}</td>
+
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-table>
+  <tbody>
+    <tr>
+      <td>Total Price</td>
+      <td>{{totalPrice | currency: "INR" }}</td>
+    </tr>
+  </tbody>
+</nz-table>

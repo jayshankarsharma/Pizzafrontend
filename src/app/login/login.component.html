@@ -1,36 +1,31 @@
-
-  
-  <div >
-
-   
-    <h1  >Login Here  </h1>
-    <h3 style="color: red;">{{error}}</h3>
-    <form  #loginForm="ngForm" class="example-form"  (ngSubmit)="onSubmit()">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>User Name</mat-label>
-          <input matInput  name="username"  [(ngModel)]="username" >
-        </mat-form-field><br>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput   name="password" type="password" [(ngModel)]="password" >
-        </mat-form-field><br>
-        <button mat-raised-button color="primary">Login</button>
-    </form>
-
-    
-</div>
-    
-
-
-    <!-- <form #f="ngForm" (ngSubmit)="onSubmit2()" novalidate>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Use Name</label>
-        <input type="text"  ngModel class="form-control" name="username" id="username" placeholder="username">
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <h1>Login Here</h1>
+  <h3 style="color: red;">{{error}}</h3>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="userName" placeholder="Username" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="password" placeholder="Password" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <div nz-row class="login-form-margin">
+    <div nz-col [nzSpan]="12">
+      <label nz-checkbox formControlName="remember">
+        <span>Remember me</span>
+      </label>
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput2" class="form-label">password</label>
-        <input type="password" class="form-control" id="password" placeholder="password">
-        </div>
-        <button class="btn btn-primary" >Login</button>
-        <h3>Not a registered user? <a [routerLink]="['/signup']" routerlink="">Sign-Up</a></h3>
-        </form> -->
+    <div nz-col [nzSpan]="12">
+      <a class="login-form-forgot">Forgot password</a>
+    </div>
+  </div>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+  Or
+  <a [routerLink]="['/signup']">register now!</a>
+</form>
